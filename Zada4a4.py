@@ -26,3 +26,7 @@ def print_int(c):
 d = get_input()
 if test_input(d):
     print_int(str_to_int(d))
+
+
+if __name__ == '__main__':
+    get_input()

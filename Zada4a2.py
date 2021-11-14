@@ -4,15 +4,25 @@
 import math
 
 
-def cylinder(r, h):
+def cylinder():
     from math import pi
 
-
     def circle():
-        s = 2*pi*r*h
-        if input('Full area? [y/n]: ') == 'y': \
-            s += 2*circle(r)
-        return circle()
+        return math.pi * r ** 2
+
+    r = int(input("Радиус: "))
+    h = int(input("Высота: "))
+    s = 2 * math.pi * r * h
+    c = circle()
+    p = s + 2 * c
+    result = input('Вывести площадь боковой поверхности цилиндра? [y/n]: ')
+
+    if result == 'y':
+        print(f"s = {s}")
+    elif result == 'n':
+        print(f"c = {p}")
 
 
-       print('s =', cylinder(r, h))
+if __name__ == '__main__':
+    cylinder()
+

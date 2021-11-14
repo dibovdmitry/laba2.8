@@ -1,14 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from datetime import date
 import sys
+
+# Список работников.
+airplanes = []
 
 
 def get_airplane():
-    path = input("Название пункта назначения ")
+    """
+    Запросить данные о работнике.
+    """
+    path = input("Название пункта назначения рейса ")
     number = input("Номер рейса ")
     model = float(input("Тип самолёта "))
 
+    # Создать словарь.
     return {
         'path': path,
         'number': number,
@@ -18,8 +26,11 @@ def get_airplane():
 
 def display_airplanes(race):
     """
+    Отобразить список работников.
     """
+    # Проверить, что список работников не пуст.
     if race:
+        # Заголовок таблицы.
         line = '+-{}-+-{}-+-{}-+-{}-+'.format(
             '-' * 4,
             '-' * 30,
@@ -37,7 +48,7 @@ def display_airplanes(race):
         )
         print(line)
 
-        for idx, worker in enumerate(airplanes, 1):
+        for airplane in race:
             print(
                 '| {:>4} | {:<30} | {:<20} | {:>8} |'.format(
                     idx,
@@ -49,25 +60,29 @@ def display_airplanes(race):
         print(line)
 
     else:
-        print("Нет таких рейсов.")
+        print("Таких рейсов нет.")
 
 
-def select_airplanes(race, info):
+def select_airplanes(race, sel):
+    """
+    Выбрать работников с заданным стажем.
+    """
     result = []
-    for employee in race:
-        if employee.get('path') == info:
-            print('Пункт назначения', airplane.get('path', ''))
-            print('Номер рейса', airplane.get('number', ''))
-            print('Тип самолёта:', airplane.get('model', ''))
+    for airplane in race:
+        if airplane.get('path') <= sel:
+            result.append(airplane)
 
-        return result
+    return result
 
 
 def main():
-    airplanes = []
+    """
+    Главная функция программы.
+    """
 
     while True:
         command = input(">>> ").lower()
+
         if command == 'exit':
             break
 
@@ -76,23 +91,23 @@ def main():
 
             airplanes.append(airplane)
             if len(airplanes) > 1:
-                airplanes.sort(key=lambda item: item.get('path', ''))
+                airplanes.sort(key=lambda item: item.get('number', ''))
 
         elif command == 'list':
             display_airplanes(airplanes)
 
         elif command.startswith('select '):
-            parts = command.split('', maxsplit=3)
-            info = str(parts[1])
+            parts = command.split(' ', maxsplit=2)
+            sel = str(parts[1])
 
-            selected = select_airplanes(airplanes, info)
+            selected = select_airplanes(airplanes, sel)
             display_airplanes(selected)
 
         elif command == 'help':
             print("Список команд:\n")
-            print("add - добавить рейс;")
-            print("list - вывести список рейсов;")
-            print("select <рейс> - запросить информацию о рейсе;")
+            print("add - добавить работника;")
+            print("list - вывести список работников;")
+            print("select <стаж> - запросить работников со стажем;")
             print("help - отобразить справку;")
             print("exit - завершить работу с программой.")
 

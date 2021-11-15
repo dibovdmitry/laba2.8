@@ -5,7 +5,6 @@ import math
 
 
 def cylinder():
-    from math import pi
 
     def circle():
         return math.pi * r ** 2
@@ -25,4 +24,3 @@ def cylinder():
 
 if __name__ == '__main__':
     cylinder()
-

@@ -1,22 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from datetime import date
 import sys
 
-# Список работников.
 airplanes = []
 
 
 def get_airplane():
-    """
-    Запросить данные о работнике.
-    """
     path = input("Название пункта назначения рейса ")
     number = input("Номер рейса ")
     model = float(input("Тип самолёта "))
 
-    # Создать словарь.
     return {
         'path': path,
         'number': number,
@@ -25,10 +19,6 @@ def get_airplane():
 
 
 def display_airplanes(race):
-    """
-    Отобразить список работников.
-    """
-    # Проверить, что список работников не пуст.
     if race:
         # Заголовок таблицы.
         line = '+-{}-+-{}-+-{}-+-{}-+'.format(
@@ -64,9 +54,6 @@ def display_airplanes(race):
 
 
 def select_airplanes(race, sel):
-    """
-    Выбрать работников с заданным стажем.
-    """
     result = []
     for airplane in race:
         if airplane.get('path') <= sel:
@@ -76,10 +63,6 @@ def select_airplanes(race, sel):
 
 
 def main():
-    """
-    Главная функция программы.
-    """
-
     while True:
         command = input(">>> ").lower()
 

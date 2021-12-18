@@ -20,7 +20,6 @@ def get_airplane():
 
 def display_airplanes(race):
     if race:
-        # Заголовок таблицы.
         line = '+-{}-+-{}-+-{}-+-{}-+'.format(
             '-' * 4,
             '-' * 30,
